@@ -1,0 +1,777 @@
+				//00000 //0
+				if(empty($no_spk) && empty($surat_kesanggupan) && empty($contract_number) && empty($bast) && empty($baso)){
+				
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',
+								contract_status_opt = '$contract_status',account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', 
+								monthly = '$monthly',total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+				//x0000 //1
+				}else if(!empty($no_spk) && empty($surat_kesanggupan) && empty($contract_number) && empty($bast) && empty($baso)){
+					echo "spk 0 0 0 0";
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	//validasi  
+					if(in_array($vno_spk,$extensi)){
+						 
+
+					$sql = "update pdct_contract set contract_level = '$contract_level',site_code = '$site_code', nama_pekerjaan = '$nama_pekerjaan',
+							no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+							cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+							account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+							total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+							move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+						 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+
+				//xx000 //2
+				}elseif (!empty($no_spk) && !empty($surat_kesanggupan) && empty($contract_number) && empty($bast) && empty($baso)) {
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	//validasi  
+					if(in_array($vno_spk,$extensi) && in_array($vsurat_kesanggupan, $extensi)){
+						 
+
+						$sql = "update pdct_contract set contract_level = '$contract_level',site_code = '$site_code', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', surat_kesanggupan_file = '$surat_kesanggupan',
+								surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]', account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//xxxxx //5
+				}else if(!empty($no_spk) && !empty($surat_kesanggupan) && !empty($contract_number) && !empty($bast) && !empty($baso)){
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vsurat_kesanggupan, $extensi) && in_array($vcontract_number, $extensi) && in_array($vbast, $extensi) && in_array($vbaso, $extensi)){
+					 
+
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', surat_kesanggupan_file = '$surat_kesanggupan',
+								surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]', contract_number_file = '$contract_number',
+								contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]', baso_file = '$baso', 
+								baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				//0x000 //2
+				}elseif (empty($no_spk) && !empty($surat_kesanggupan) && empty($contract_number) && empty($bast) && empty($baso)) {
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vsurat_kesanggupan, $extensi)){
+						 
+
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								surat_kesanggupan_file = '$surat_kesanggupan', surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]',
+								account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',
+								contract_status_opt = '$contract_status',account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						 
+						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						 
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				//xxx00 //3	
+				}elseif (!empty($no_spk) && !empty($surat_kesanggupan) && !empty($contract_number) && empty($bast) && empty($baso)) {
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vsurat_kesanggupan, $extensi) && in_array($vcontract_number, $extensi)){
+						 
+
+					$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', surat_kesanggupan_file = '$surat_kesanggupan',
+								surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]', contract_number_file = '$contract_number',
+								contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',
+								contract_status_opt = '$contract_status',account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+					 
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//0xx00 //3
+				}elseif (empty($no_spk) && !empty($surat_kesanggupan) && !empty($contract_number) && empty($bast) && empty($baso)) {
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vsurat_kesanggupan, $extensi) && in_array($vcontract_number, $extensi)){
+						 
+
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								surat_kesanggupan_file = '$surat_kesanggupan',surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]', 
+								contract_number_file = '$contract_number',contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',
+								contract_status_opt = '$contract_status', account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', 
+								monthly = '$monthly', total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						 
+						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+						 
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//00x00 //3	
+				}elseif (empty($no_spk) && empty($surat_kesanggupan) && !empty($contract_number) && empty($bast) && empty($baso)) {
+				 
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vcontract_number, $extensi)){
+						 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								contract_number_file = '$contract_number', contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',
+								contract_status_opt = '$contract_status', account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+ 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}				
+
+				//x0x00 //3
+				}elseif (!empty($no_spk) && empty($surat_kesanggupan) && !empty($contract_number) && empty($bast) && empty($baso)) {
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vcontract_number, $extensi)){
+						 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', contract_number_file = '$contract_number',
+								contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+ 						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+ 					
+ 					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}				
+
+				//0x000 //3
+				}elseif (empty($no_spk) && !empty($surat_kesanggupan) && empty($contract_number) && empty($bast) && empty($baso)) {
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vsurat_kesanggupan, $extensi)){
+					 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								surat_kesanggupan_file = '$surat_kesanggupan',	surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]', 
+								account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',
+								contract_status_opt = '$contract_status',account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+ 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//xxxx0 //4
+				}elseif (!empty($no_spk) && !empty($surat_kesanggupan) && !empty($contract_number) && !empty($bast) && empty($baso)) {
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vsurat_kesanggupan, $extensi) && in_array($vcontract_number, $extensi) && in_array($vbast, $extensi)){
+						 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', surat_kesanggupan_file = '$surat_kesanggupan',
+								surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]', contract_number_file = '$contract_number',
+								contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+ 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//0xxx0 //4		
+				}elseif (empty($no_spk) && !empty($surat_kesanggupan) && !empty($contract_number) && !empty($bast) && empty($baso)) {
+			 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vsurat_kesanggupan, $extensi) && in_array($vcontract_number, $extensi) && in_array($vbast, $extensi)){
+	 					
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								surat_kesanggupan_file = '$surat_kesanggupan',surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]',
+								contract_number_file = '$contract_number', contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+ 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//00xx0 //4
+				}elseif (empty($no_spk) && empty($surat_kesanggupan) && !empty($contract_number) && !empty($bast) && empty($baso)) {
+			 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vcontract_number, $extensi) && in_array($vbast, $extensi)){
+					 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								contract_number_file = '$contract_number',contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]', account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+ 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//000x0 //4	
+				}elseif (empty($no_spk) && empty($surat_kesanggupan) && empty($contract_number) && !empty($bast) && empty($baso)) {
+			 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vbast, $extensi)){
+				 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]', account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+ 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}				
+				//x00x0 //4
+				}elseif (!empty($no_spk) && empty($surat_kesanggupan) && empty($contract_number) && !empty($bast) && empty($baso)) {
+				 
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vbast, $extensi)){
+					 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]',bast_file = '$bast', bast_date_edit = now(),
+								bast_who_edit = '$_SESSION[username]', account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', 
+								masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', 
+								monthly = '$monthly',total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+					 	move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+						 
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//xx0x0 //4
+				}elseif (!empty($no_spk) && !empty($surat_kesanggupan) && empty($contract_number) && !empty($bast) && empty($baso)) {
+		 
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vsurat_kesanggupan, $extensi) && in_array($vbast, $extensi)){
+					 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', surat_kesanggupan_file = '$surat_kesanggupan',
+								surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]',bast_file = '$bast', bast_date_edit = now(), 
+								bast_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', 
+								masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',account_manager = '$acc_manager', email = '$email', phone = '$phone',
+								otc = '$otc', monthly = '$monthly',	total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+ 						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+ 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}			
+				//0x0x0 //4
+				}elseif (empty($no_spk) && !empty($surat_kesanggupan) && empty($contract_number) && !empty($bast) && empty($baso)) {
+ 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vsurat_kesanggupan, $extensi) && in_array($vbast, $extensi)){
+				 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								surat_kesanggupan_file = '$surat_kesanggupan', surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]',  
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]', account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+ 						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+ 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//x0xx0 //4
+				}elseif (!empty($no_spk) && empty($surat_kesanggupan) && !empty($contract_number) && !empty($bast) && empty($baso)) {
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vcontract_number, $extensi) && in_array($vbast, $extensi)){
+				 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', contract_number_file = '$contract_number',
+								contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',bast_file = '$bast', bast_date_edit = now(), 
+								bast_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending',
+								masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',account_manager = '$acc_manager', email = '$email', phone = '$phone', 
+								otc = '$otc', monthly = '$monthly', total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+ 						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+ 
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				//0000x //5
+				}elseif (empty($no_spk) && empty($surat_kesanggupan) && empty($contract_number) && empty($bast) && !empty($baso)) {
+			 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vbaso, $extensi)){
+						 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								baso_file = '$baso', baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//000xx //5	
+				}elseif (empty($no_spk) && empty($surat_kesanggupan) && empty($contract_number) && !empty($bast) && !empty($baso)) {
+	 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vbast, $extensi) && in_array($vbaso, $extensi)){
+						 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]', baso_file = '$baso', 
+								baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//00xxx //5	
+				}elseif (empty($no_spk) && empty($surat_kesanggupan) && !empty($contract_number) && !empty($bast) && !empty($baso)) {
+ 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vcontract_number, $extensi) && in_array($vbast, $extensi) && in_array($vbaso, $extensi)){
+					
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								contract_number_file = '$contract_number', contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]', baso_file = '$baso', 
+								baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				//0xxxx //5					
+				}elseif (empty($no_spk) && !empty($surat_kesanggupan) && !empty($contract_number) && !empty($bast) && !empty($baso)) {
+ 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vsurat_kesanggupan, $extensi) && in_array($vcontract_number, $extensi) && in_array($vbast, $extensi) && in_array($vbaso, $extensi)){
+					 
+							$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								surat_kesanggupan_file = '$surat_kesanggupan',surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]', 
+								contract_number_file = '$contract_number', contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]', baso_file = '$baso', 
+								baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				//0xx0x //5	
+				}elseif (empty($no_spk) && !empty($surat_kesanggupan) && !empty($contract_number) && empty($bast) && !empty($baso)) {
+ 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vsurat_kesanggupan, $extensi) && in_array($vcontract_number, $extensi) && in_array($vbaso, $extensi)){
+						 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								surat_kesanggupan_file = '$surat_kesanggupan',surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]',
+								contract_number_file = '$contract_number', contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								baso_file = '$baso', baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+ 						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				
+				//xxx0x //5
+				}elseif (!empty($no_spk) && !empty($surat_kesanggupan) && !empty($contract_number) && empty($bast) && !empty($baso)) {
+			 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vsurat_kesanggupan, $extensi) && in_array($vcontract_number, $extensi) && in_array($vbaso, $extensi)){
+						 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', surat_kesanggupan_file = '$surat_kesanggupan',
+								surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]', contract_number_file = '$contract_number',
+								contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',baso_file = '$baso', baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',
+								account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+ 						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				//x0x0x //5
+				}elseif (!empty($no_spk) && empty($surat_kesanggupan) && !empty($contract_number) && empty($bast) && !empty($baso)) {
+				 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vcontract_number, $extensi) && in_array($vbaso, $extensi)){
+					 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', contract_number_file = '$contract_number',
+								contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',baso_file = '$baso', baso_date_edit = now(),
+								baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending',
+								masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', 
+								monthly = '$monthly', total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+ 						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+ 						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				//x0xxx //5
+				}elseif (!empty($no_spk) && empty($surat_kesanggupan) && !empty($contract_number) && !empty($bast) && !empty($baso)) {
+		 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vcontract_number, $extensi) && in_array($vbast, $extensi) && in_array($vbaso, $extensi)){
+					 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', contract_number_file = '$contract_number',
+								contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								bast_file = '$bast', bast_date_edit = now(), bast_who_edit = '$_SESSION[username]', baso_file = '$baso', 
+								baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+ 						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				//x00xx //5
+				}elseif (!empty($no_spk) && empty($surat_kesanggupan) && empty($contract_number) && !empty($bast) && !empty($baso)) {
+		 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vbast, $extensi) && in_array($vbaso, $extensi)){
+	 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]',bast_file = '$bast', 
+								bast_date_edit = now(), bast_who_edit = '$_SESSION[username]', baso_file = '$baso', baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',
+								account_no = '$acc_no', sid = '$sid', cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',
+								contract_status_opt = '$contract_status',account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+ 						move_uploaded_file($_FILES['bast']['tmp_name'],"doc_uploads/bast/".$bast);
+						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				//x000x //5
+				}elseif (!empty($no_spk) && empty($surat_kesanggupan) && empty($contract_number) && empty($bast) && !empty($baso)) {
+			 
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vbaso, $extensi)){
+						 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', baso_file = '$baso', 
+								baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+ 						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//xx00x //5
+				}elseif (!empty($no_spk) && !empty($surat_kesanggupan) && empty($contract_number) && empty($bast) && !empty($baso)) {
+ 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vno_spk,$extensi) && in_array($vsurat_kesanggupan, $extensi) && in_array($vbaso, $extensi)){
+						 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								no_spk_p8_file = '$no_spk', no_spk_p8_date_edit = now(), no_spk_p8_who_edit = '$_SESSION[username]', surat_kesanggupan_file = '$surat_kesanggupan',
+								surat_kesanggupan_date_edit = now(), surat_kesanggupan_who_edit = '$_SESSION[username]', baso_file = '$baso', 
+								baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['no_spk']['tmp_name'],"doc_uploads/spk/".$no_spk);
+						move_uploaded_file($_FILES['surat_kesanggupan']['tmp_name'],"doc_uploads/sk/".$surat_kesanggupan);
+ 						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+
+				//00x0x //5	
+				}elseif (empty($no_spk) && empty($surat_kesanggupan) && !empty($contract_number) && empty($bast) && !empty($baso)) {
+			 
+
+					$extensi = array("pdf","jpg","jpeg","png");
+			 	 	 
+					if(in_array($vcontract_number, $extensi) && in_array($vbaso, $extensi)){
+ 
+						$sql = "update pdct_contract set site_code = '$site_code', contract_level = '$contract_level', nama_pekerjaan = '$nama_pekerjaan',
+								contract_number_file = '$contract_number',contract_number_date_edit = now() , contract_number_who_edit = '$_SESSION[username]',
+								baso_file = '$baso', baso_date_edit = now(), baso_who_edit = '$_SESSION[username]',account_no = '$acc_no', sid = '$sid', 
+								cid = '$cid', start_date = '$starting', ending_date = '$ending', masa_kontrak = '$masa_kontrak',contract_status_opt = '$contract_status',
+								account_manager = '$acc_manager', email = '$email', phone = '$phone', otc = '$otc', monthly = '$monthly',
+								total = '$total',user_edit = '$_SESSION[username]', date_edit = now() where id = '$id' AND id_customer = '$idcust'";
+
+
+ 						move_uploaded_file($_FILES['contract_number']['tmp_name'],"doc_uploads/cn/".$contract_number);
+ 						move_uploaded_file($_FILES['baso']['tmp_name'],"doc_uploads/baso/".$baso);
+
+					}else{
+  						echo "<script language=javascript>
+	                    alert('File yang anda upload bukan dokumen yang diizinkan!');
+	                     window.location='master_pdct.php?act=DetailContractAdd&idcust=$idcust';
+	                    </script>";
+					}
+				}

@@ -1,0 +1,485 @@
+<?php
+/*%%SmartyHeaderCode:1767156d244f11270d9_03145189%%*/
+if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'ec594a3a107b4b8c9bd3735ca7c70dd1f61f0942' => 
+    array (
+      0 => './templates/agging_project_status.tpl',
+      1 => 1456620783,
+      2 => 'file',
+    ),
+    '0d67b0acdab9c4ef7b7786428c9051d03ca0e70f' => 
+    array (
+      0 => './templates/header.tpl',
+      1 => 1455203965,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1767156d244f11270d9_03145189',
+  'tpl_function' => 
+  array (
+  ),
+  'version' => '3.1.24',
+  'unifunc' => 'content_56e7c1ccbd7987_16605784',
+  'has_nocache_code' => false,
+  'cache_lifetime' => 0,
+),true);
+/*/%%SmartyHeaderCode%%*/
+if ($_valid && !is_callable('content_56e7c1ccbd7987_16605784')) {
+function content_56e7c1ccbd7987_16605784 ($_smarty_tpl) {
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+ 
+
+    <title>Program Aplikasi PDCT</title>
+
+          <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/css_datepicker.css">
+     <link rel="stylesheet" type="text/css" href="assets/dataTables.bootstrap.min.css">
+      
+     <script src="assets/jquery-1.10.2.js"> </script>
+     <script src="bootstrap/dist/js/bootstrap.min.js"> </script>
+     <script src="assets/jquery.dataTables.min.js"> </script>
+     <script src="assets/dataTables.bootstrap.min.js"> </script>
+     <script src="js/jQuery-Mask-Plugin_js_jquery.mask.min.js"> </script>
+     <script src="js/bootstrap-datepicker.js"> </script>
+
+     
+ 
+     
+    
+
+    <script language='JavaScript'>
+    var input_pronumb = $("#input_pronumb").val();
+    var idprono = $("#idprono").val();
+
+    if(input_pronumb == ''){
+      idprono.value = '';
+    }
+
+    if(input_cust_name == ''){
+      idcust.value = '';
+    }
+    
+    </script>
+
+    
+
+<script>
+  if (top.location != location) {
+    top.location.href = document.location.href ;
+  }
+    $(function(){
+      window.prettyPrint && prettyPrint();
+      $('#dp1').datepicker({
+         
+        format: 'dd-mm-yyyy'
+      });
+
+       $('#dp2').datepicker({
+        
+        format: 'dd-mm-yyyy'
+      });
+       
+    
+    });
+  </script>
+
+
+
+    <script language='JavaScript'>
+    var ajaxRequest;
+    function getAjax() //fungsi untuk mengecek AJAX pada browsergv
+    {
+      try
+      {
+        ajaxRequest = new XMLHttpRequest();
+      }
+      catch (e)
+      {
+        try
+        {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch (e) 
+        {
+          try
+          {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          catch (e)
+          {
+            alert("Your browser broke!");
+            return false;
+          }
+        }
+      }
+    }
+
+    function autoComplete() //fungsi menangkap input search dan menampilkan hasil search
+    {
+      getAjax();
+      input_pronumb = document.getElementById('input_pronumb').value;
+      
+      if (input_pronumb == "")
+      {
+        document.getElementById("hasil").innerHTML = "";
+        document.getElementById("idprono").value = "";
+      }
+      else
+      {
+        ajaxRequest.open("GET","autosuggest.php?input_pronumb="+input_pronumb);
+        ajaxRequest.onreadystatechange = function()
+        {
+        document.getElementById("hasil").innerHTML = ajaxRequest.responseText;
+        }
+        ajaxRequest.send(null);
+      }
+    } 
+
+     function autoCompletea() //fungsi menangkap input search dan menampilkan hasil search
+    {
+      getAjax();
+      input_cust_name = document.getElementById('input_cust_name').value;
+      
+      if (input_cust_name == "")
+      {
+        document.getElementById("hasilcust").innerHTML = "";
+        document.getElementById("idcust").value = "";
+      }
+      else
+      {
+        ajaxRequest.open("GET","autosuggest.php?input_cust_name="+input_cust_name);
+        ajaxRequest.onreadystatechange = function()
+        {
+        document.getElementById("hasilcust").innerHTML = ajaxRequest.responseText;
+        }
+        ajaxRequest.send(null);
+      }
+    } 
+  
+
+ 
+function autoInsert(no_project,nama_site1) //fungsi mengisi input text dengan hasil pencarian yang dipilih
+{
+  document.getElementById("input_pronumb").value = no_project;
+  document.myForm.idprono.value = no_project;
+  document.getElementById("hasil").innerHTML = "";
+}
+
+ 
+function autoInserta(id,nama_customer) //fungsi mengisi input text dengan hasil pencarian yang dipilih
+{
+  document.getElementById("input_cust_name").value = nama_customer;
+  document.myForm.idcust.value = nama_customer;
+  document.getElementById("hasilcust").innerHTML = "";
+}
+
+ 
+ 
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#otc').mask('000.000.000.000.000', {reverse: true});
+    $('#bill').mask('000.000.000.000.000', {reverse: true});
+    $('#monthly').mask('000.000.000.000.000', {reverse: true});
+  });
+  
+</script>
+
+     
+ 
+     
+ 
+  </head>
+
+  <body role="document">
+
+   <HTML>
+<HEAD>
+<TITLE>Program Aplikasi PDCT - <br />
+<b>Notice</b>:  Undefined index: Name in <b>C:\xampp\htdocs\pdct\templates_c\0d67b0acdab9c4ef7b7786428c9051d03ca0e70f_0.file.header.tpl.cache.php</b> on line <b>36</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>C:\xampp\htdocs\pdct\templates_c\0d67b0acdab9c4ef7b7786428c9051d03ca0e70f_0.file.header.tpl.cache.php</b> on line <b>36</b><br />
+</TITLE>
+</HEAD>
+<body>
+ <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Program Aplikasi PDCT</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="master_pdct.php">Master PDCT</a></li>
+            
+           
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="new_project_list.php">New Project List</a></li>
+                <li><a href="agging_project_status.php">Agging Project List</a></li>
+                <li><a href="project_status_list.php">Project Status List</a></li>
+                <li><a href="billing_list.php">Billing List</a></li>
+                <li><a href="extention_project_list.php">Extention Project List</a></li>
+              </ul>
+            </li>
+
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Report <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="proforma_invoice.php">Proforma Invoice </a></li>
+                <li><a href="resume_proforma_invoice.php">Resume Proforma Invoice </a></li>
+              </ul>
+            </li>
+
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extra <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="m_user.php">Manajemen User</a></li>
+               
+              </ul>
+            </li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> okki   <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                 <li><a href="index.php?act=Logout">Keluar</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+</body>
+</HTML>
+
+
+    <div class="container theme-showcase" role="main">
+
+          <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div style="margin-top:50px;">
+    </div>
+       
+        <div class="jumbotron">
+        <div align="right">
+        <img src="images/logo.gif">
+        <h2>Agging Project Status PT Wave Communication Indonesia</h2>
+        </div>
+
+        </div>
+
+
+
+ 
+
+    <form action="" method="POST" enctype="multipart/form-data">
+     <table class="table table-stripped table-hover">
+      <tr>
+        <td>  Contract Status  </td>
+        <td>  : </td>
+        <td colspan="3">  
+         <select name="id_contract_status" class="form-control"> 
+         <option value="" selected="selected">--Pilih--</option>
+                                    <option value="1" > 
+                  Administration </option>
+                                    <option value="2" > 
+                  On Service </option>
+                                    <option value="3" > 
+                  End Of Service </option>
+                                    <option value="4" > 
+                  Other </option>
+                                    <option value="5" > 
+                  Close Project </option>
+                           </select> 
+
+         </td>
+      </tr>
+
+      <tr>
+        <td>  Customer Name  </td>
+        <td>  : </td>
+        <td colspan="3">  
+        <select name="id_customer_name" class="form-control"> 
+        <option value="" selected="selected">--Pilih--</option>
+                                    <option value="1" > PT.TELKOM INDONESIA </option>
+                                    <option value="2" > PT.SISINDOKOM </option>
+                                    <option value="3" > PT.LINTAS ARTA </option>
+                                    <option value="4" > PT.FIRST MEDIA </option>
+                                    <option value="5" > PT.INDOSAT </option>
+                                    <option value="6" > PT.LANGIT ANGKASA PURA </option>
+                                    <option value="7" > PT.MEDIA NUSANTARA CITRA </option>
+                                    <option value="8" > PT.EXCELECOMINDO </option>
+                                    <option value="10" > PT.TRI INDONESIA </option>
+                                    <option value="11" > PT.Lenovo Tbk </option>
+                                    <option value="12" > PT.SGU Bersama </option>
+                          </select> 
+        </td>
+      </tr>
+
+      <tr>
+        <td>  Year Periode  </td>
+        <td>  : </td>
+        <td>
+        <select name="tahun" class="form-control">
+        <option value="" selected="selected">--Pilih--</option>
+                <option value="2001"> 2001</option>
+                <option value="2002"> 2002</option>
+                <option value="2003"> 2003</option>
+                <option value="2004"> 2004</option>
+                <option value="2005"> 2005</option>
+                <option value="2006"> 2006</option>
+                <option value="2007"> 2007</option>
+                <option value="2008"> 2008</option>
+                <option value="2009"> 2009</option>
+                <option value="2010"> 2010</option>
+                <option value="2011"> 2011</option>
+                <option value="2012"> 2012</option>
+                <option value="2013"> 2013</option>
+                <option value="2014"> 2014</option>
+                <option value="2015"> 2015</option>
+                <option value="2016"> 2016</option>
+                <option value="2017"> 2017</option>
+                <option value="2018"> 2018</option>
+                <option value="2019"> 2019</option>
+                <option value="2020"> 2020</option>
+                <option value="2021"> 2021</option>
+                <option value="2022"> 2022</option>
+                <option value="2023"> 2023</option>
+                <option value="2024"> 2024</option>
+                <option value="2025"> 2025</option>
+                <option value="2026"> 2026</option>
+                <option value="2027"> 2027</option>
+                <option value="2028"> 2028</option>
+                <option value="2029"> 2029</option>
+                <option value="2030"> 2030</option>
+                <option value="2031"> 2031</option>
+                <option value="2032"> 2032</option>
+                <option value="2033"> 2033</option>
+                <option value="2034"> 2034</option>
+                <option value="2035"> 2035</option>
+                <option value="2036"> 2036</option>
+                <option value="2037"> 2037</option>
+                <option value="2038"> 2038</option>
+                <option value="2039"> 2039</option>
+                <option value="2040"> 2040</option>
+                <option value="2041"> 2041</option>
+                <option value="2042"> 2042</option>
+                <option value="2043"> 2043</option>
+                <option value="2044"> 2044</option>
+                <option value="2045"> 2045</option>
+                <option value="2046"> 2046</option>
+                <option value="2047"> 2047</option>
+                <option value="2048"> 2048</option>
+                <option value="2049"> 2049</option>
+                <option value="2050"> 2050</option>
+                </select> 
+        </td>
+      </tr>
+
+     </table>
+  
+     <input type="submit" name="caridata" class="btn btn-primary btn-block" value="Cari Data">  
+     <br>
+     <br>
+     </form>
+  
+      
+      
+
+    
+     <br> 
+
+     <table class="table table-stripped table-hover" >
+      <tr>  
+          <td> <b>Contract Status </b> </td>
+          <td> : </td>
+          <td>  </td>
+      </tr>
+       <tr>  
+          <td> <b>Customer Name </b> </td>
+          <td> : </td>
+          <td>  </td>
+      </tr>
+       <tr>  
+          <td> <b>Year Periode  </b> </td>
+          <td> : </td>
+          <td>   </td>
+      </tr>
+           
+
+ <form name="print" method="POST" action="print_agging_project_status.php" target="_blank" enctype="multipart/form-data"> 
+     <input type="hidden" name="id_customer_name" value="">
+     <input type="hidden" name="id_contract_status" value="">
+     <input type="hidden" name="tahun" value="">
+     
+
+    
+    <br>
+</form>
+     <br>
+     
+     <table class="table table-stripped table-hover table-bordered">
+        <tr align="center" style="font-size: 12px;">
+        <td> <b>Billing Periode </b> </td>
+        <td> <b>Total Bill Amount </b>  </td>
+        </tr>
+
+                <tr align="center" style="font-size: 12px;">
+        <td>   </td>
+        <td> Rp.  </td>
+        </tr>
+        
+         <tr align="center">
+          <td> <b>TOTAL</b> </td>
+          <td> <b>Rp. 0 </b></td>
+        </tr>
+     </table>
+   </div>
+   </div>
+   </div>
+
+
+    </div> <!-- /container -->
+
+    <footer class="footer">
+      <div class="container" style="text-align:center; margin-top:30px;">
+        <p class="text-muted"> &copy; 2016 <a href='http://wavecomindo.co.id'>PT. Wavecomindo</a></p>
+      </div>
+    </footer>
+
+    
+     
+  </body>
+</html>
+
+
+
+
+
+
+<?php }
+}
+?>

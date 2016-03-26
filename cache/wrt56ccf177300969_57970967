@@ -1,0 +1,721 @@
+<?php
+/*%%SmartyHeaderCode:1086156ccf175be0174_24529993%%*/
+if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'ceb6d24d4e06d54a9a19a21a4741c4b55bf54b61' => 
+    array (
+      0 => './templates/billing_list.tpl',
+      1 => 1456271730,
+      2 => 'file',
+    ),
+    '0d67b0acdab9c4ef7b7786428c9051d03ca0e70f' => 
+    array (
+      0 => './templates/header.tpl',
+      1 => 1455203965,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1086156ccf175be0174_24529993',
+  'tpl_function' => 
+  array (
+  ),
+  'version' => '3.1.24',
+  'unifunc' => 'content_56ccf1772f1cb0_64372504',
+  'has_nocache_code' => false,
+  'cache_lifetime' => 0,
+),true);
+/*/%%SmartyHeaderCode%%*/
+if ($_valid && !is_callable('content_56ccf1772f1cb0_64372504')) {
+function content_56ccf1772f1cb0_64372504 ($_smarty_tpl) {
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+ 
+
+    <title>Program Aplikasi PDCT</title>
+
+          <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/css_datepicker.css">
+     <link rel="stylesheet" type="text/css" href="assets/dataTables.bootstrap.min.css">
+      
+     <script src="assets/jquery-1.10.2.js"> </script>
+     <script src="bootstrap/dist/js/bootstrap.min.js"> </script>
+     <script src="assets/jquery.dataTables.min.js"> </script>
+     <script src="assets/dataTables.bootstrap.min.js"> </script>
+     <script src="js/jQuery-Mask-Plugin_js_jquery.mask.min.js"> </script>
+     <script src="js/bootstrap-datepicker.js"> </script>
+
+     
+ 
+     
+    
+
+    <script language='JavaScript'>
+    var input_pronumb = $("#input_pronumb").val();
+    var idprono = $("#idprono").val();
+
+    if(input_pronumb == ''){
+      idprono.value = '';
+    }
+
+    if(input_cust_name == ''){
+      idcust.value = '';
+    }
+    
+    </script>
+
+    
+
+<script>
+  if (top.location != location) {
+    top.location.href = document.location.href ;
+  }
+    $(function(){
+      window.prettyPrint && prettyPrint();
+      $('#dp1').datepicker({
+         
+        format: 'dd-mm-yyyy'
+      });
+
+       $('#dp2').datepicker({
+        
+        format: 'dd-mm-yyyy'
+      });
+       
+    
+    });
+  </script>
+
+
+
+    <script language='JavaScript'>
+    var ajaxRequest;
+    function getAjax() //fungsi untuk mengecek AJAX pada browsergv
+    {
+      try
+      {
+        ajaxRequest = new XMLHttpRequest();
+      }
+      catch (e)
+      {
+        try
+        {
+          ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch (e) 
+        {
+          try
+          {
+            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          catch (e)
+          {
+            alert("Your browser broke!");
+            return false;
+          }
+        }
+      }
+    }
+
+    function autoComplete() //fungsi menangkap input search dan menampilkan hasil search
+    {
+      getAjax();
+      input_pronumb = document.getElementById('input_pronumb').value;
+      
+      if (input_pronumb == "")
+      {
+        document.getElementById("hasil").innerHTML = "";
+        document.getElementById("idprono").value = "";
+      }
+      else
+      {
+        ajaxRequest.open("GET","autosuggest.php?input_pronumb="+input_pronumb);
+        ajaxRequest.onreadystatechange = function()
+        {
+        document.getElementById("hasil").innerHTML = ajaxRequest.responseText;
+        }
+        ajaxRequest.send(null);
+      }
+    } 
+
+     function autoCompletea() //fungsi menangkap input search dan menampilkan hasil search
+    {
+      getAjax();
+      input_cust_name = document.getElementById('input_cust_name').value;
+      
+      if (input_cust_name == "")
+      {
+        document.getElementById("hasilcust").innerHTML = "";
+        document.getElementById("idcust").value = "";
+      }
+      else
+      {
+        ajaxRequest.open("GET","autosuggest.php?input_cust_name="+input_cust_name);
+        ajaxRequest.onreadystatechange = function()
+        {
+        document.getElementById("hasilcust").innerHTML = ajaxRequest.responseText;
+        }
+        ajaxRequest.send(null);
+      }
+    } 
+  
+
+ 
+function autoInsert(no_project,nama_site1) //fungsi mengisi input text dengan hasil pencarian yang dipilih
+{
+  document.getElementById("input_pronumb").value = no_project;
+  document.myForm.idprono.value = no_project;
+  document.getElementById("hasil").innerHTML = "";
+}
+
+ 
+function autoInserta(id,nama_customer) //fungsi mengisi input text dengan hasil pencarian yang dipilih
+{
+  document.getElementById("input_cust_name").value = nama_customer;
+  document.myForm.idcust.value = nama_customer;
+  document.getElementById("hasilcust").innerHTML = "";
+}
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#otc').mask('000.000.000.000.000', {reverse: true});
+    $('#bill').mask('000.000.000.000.000', {reverse: true});
+    $('#monthly').mask('000.000.000.000.000', {reverse: true});
+  });
+  
+</script>
+
+     
+ 
+     
+ 
+  </head>
+
+  <body role="document">
+
+   <HTML>
+<HEAD>
+<TITLE>Program Aplikasi PDCT - <br />
+<b>Notice</b>:  Undefined index: Name in <b>C:\xampp\htdocs\pdct\templates_c\0d67b0acdab9c4ef7b7786428c9051d03ca0e70f_0.file.header.tpl.cache.php</b> on line <b>36</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>C:\xampp\htdocs\pdct\templates_c\0d67b0acdab9c4ef7b7786428c9051d03ca0e70f_0.file.header.tpl.cache.php</b> on line <b>36</b><br />
+</TITLE>
+</HEAD>
+<body>
+ <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Program Aplikasi PDCT</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="master_pdct.php">Master PDCT</a></li>
+            
+           
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="new_project_list.php">New Project List</a></li>
+                <li><a href="agging_project_status.php">Agging Project List</a></li>
+                <li><a href="project_status_list.php">Project Status List</a></li>
+                <li><a href="billing_list.php">Billing List</a></li>
+                <li><a href="extention_project_list.php">Extention Project List</a></li>
+              </ul>
+            </li>
+
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Report <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="proforma_invoice.php">Proforma Invoice </a></li>
+                <li><a href="resume_proforma_invoice.php">Resume Proforma Invoice </a></li>
+              </ul>
+            </li>
+
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extra <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="m_user.php">Manajemen User</a></li>
+               
+              </ul>
+            </li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> okki   <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                 <li><a href="index.php?act=Logout">Keluar</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+</body>
+</HTML>
+
+
+    <div class="container theme-showcase" role="main">
+
+          <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div style="margin-top:50px;">
+    </div>
+       
+        <div class="jumbotron">
+        <div align="right">
+        <img src="images/logo.gif">
+        <h2>Billing List PT Wave Communication Indonesia</h2>
+        </div>
+
+        </div>
+
+
+
+ 
+
+    <form action="" method="POST" enctype="multipart/form-data">
+     <table class="table table-stripped table-hover" width="100%;">
+      <tr>
+        <td>  Customer Name  </td>
+        <td>  : </td>
+        <td colspan="5">  
+         <select name="id_customer_name" class="form-control"> 
+         <option value="" selected="selected">--Pilih--</option>
+                                    <option value="1" > 
+                  PT.TELKOM INDONESIA </option>
+                                    <option value="2" > 
+                  PT.SISINDOKOM </option>
+                                    <option value="3" > 
+                  PT.LINTAS ARTA </option>
+                                    <option value="4" > 
+                  PT.FIRST MEDIA </option>
+                                    <option value="5" > 
+                  PT.INDOSAT </option>
+                                    <option value="6" > 
+                  PT.LANGIT ANGKASA PURA </option>
+                                    <option value="7" > 
+                  PT.MEDIA NUSANTARA CITRA </option>
+                                    <option value="8" > 
+                  PT.EXCELECOMINDO </option>
+                                    <option value="10" > 
+                  PT.TRI INDONESIA </option>
+                                    <option value="11" > 
+                  PT.Lenovo Tbk </option>
+                           </select> 
+
+         </td>
+      </tr>
+
+      <tr>
+        <td>  Paid Status   </td>
+        <td>  : </td>
+        <td colspan="5">  
+        <select name="paid_status" class="form-control"> 
+          <option value=""  selected="selected"> --Pilih-- </option>
+          <option value="Y"> Yes </option>
+          <option value="N"> No </option>
+          <option value="I"> Invoicing </option>
+          <option value="E"> End Of Service </option>
+                
+        </select> 
+        </td>
+      </tr>
+
+      <tr>
+        <td>  Bill Periode  </td>
+        <td>  : </td>
+        <td>  
+         <select name="list_year_from" class="form-control">
+          <option value="">Year From</option>
+                     <option value="2000">2000</option>
+                     <option value="2001">2001</option>
+                     <option value="2002">2002</option>
+                     <option value="2003">2003</option>
+                     <option value="2004">2004</option>
+                     <option value="2005">2005</option>
+                     <option value="2006">2006</option>
+                     <option value="2007">2007</option>
+                     <option value="2008">2008</option>
+                     <option value="2009">2009</option>
+                     <option value="2010">2010</option>
+                     <option value="2011">2011</option>
+                     <option value="2012">2012</option>
+                     <option value="2013">2013</option>
+                     <option value="2014">2014</option>
+                     <option value="2015">2015</option>
+                     <option value="2016">2016</option>
+                     <option value="2017">2017</option>
+                     <option value="2018">2018</option>
+                     <option value="2019">2019</option>
+                     <option value="2020">2020</option>
+                     <option value="2021">2021</option>
+                     <option value="2022">2022</option>
+                     <option value="2023">2023</option>
+                     <option value="2024">2024</option>
+                     <option value="2025">2025</option>
+                     <option value="2026">2026</option>
+                     <option value="2027">2027</option>
+                     <option value="2028">2028</option>
+                     <option value="2029">2029</option>
+                     <option value="2030">2030</option>
+                     <option value="2031">2031</option>
+                     <option value="2032">2032</option>
+                     <option value="2033">2033</option>
+                     <option value="2034">2034</option>
+                     <option value="2035">2035</option>
+                     <option value="2036">2036</option>
+                     <option value="2037">2037</option>
+                     <option value="2038">2038</option>
+                     <option value="2039">2039</option>
+                     <option value="2040">2040</option>
+                     <option value="2041">2041</option>
+                     <option value="2042">2042</option>
+                     <option value="2043">2043</option>
+                     <option value="2044">2044</option>
+                     <option value="2045">2045</option>
+                     <option value="2046">2046</option>
+                     <option value="2047">2047</option>
+                     <option value="2048">2048</option>
+                     <option value="2049">2049</option>
+                     <option value="2050">2050</option>
+                     <option value="2051">2051</option>
+                     <option value="2052">2052</option>
+                     <option value="2053">2053</option>
+                     <option value="2054">2054</option>
+                     <option value="2055">2055</option>
+                     <option value="2056">2056</option>
+                     <option value="2057">2057</option>
+                     <option value="2058">2058</option>
+                     <option value="2059">2059</option>
+                     <option value="2060">2060</option>
+                     <option value="2061">2061</option>
+                     <option value="2062">2062</option>
+                     <option value="2063">2063</option>
+                     <option value="2064">2064</option>
+                     <option value="2065">2065</option>
+                     <option value="2066">2066</option>
+                     <option value="2067">2067</option>
+                     <option value="2068">2068</option>
+                     <option value="2069">2069</option>
+                     <option value="2070">2070</option>
+                     <option value="2071">2071</option>
+                     <option value="2072">2072</option>
+                     <option value="2073">2073</option>
+                     <option value="2074">2074</option>
+                     <option value="2075">2075</option>
+                     <option value="2076">2076</option>
+                     <option value="2077">2077</option>
+                     <option value="2078">2078</option>
+                     <option value="2079">2079</option>
+                     <option value="2080">2080</option>
+                     <option value="2081">2081</option>
+                     <option value="2082">2082</option>
+                     <option value="2083">2083</option>
+                     <option value="2084">2084</option>
+                     <option value="2085">2085</option>
+                     <option value="2086">2086</option>
+                     <option value="2087">2087</option>
+                     <option value="2088">2088</option>
+                     <option value="2089">2089</option>
+                     <option value="2090">2090</option>
+                     <option value="2091">2091</option>
+                     <option value="2092">2092</option>
+                     <option value="2093">2093</option>
+                     <option value="2094">2094</option>
+                     <option value="2095">2095</option>
+                     <option value="2096">2096</option>
+                     <option value="2097">2097</option>
+                     <option value="2098">2098</option>
+                     <option value="2099">2099</option>
+                     <option value="2100">2100</option>
+                    
+         </select>
+        </td>
+
+        <td>
+          <select name="list_month_from" class="form-control">
+          <option value="">Month From</option>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                     <option value="6">6</option>
+                     <option value="7">7</option>
+                     <option value="8">8</option>
+                     <option value="9">9</option>
+                     <option value="10">10</option>
+                     <option value="11">11</option>
+                     <option value="12">12</option>
+                    
+         </select>
+        </td>
+         <!--
+         <select name="bill_period_from" class="form-control">
+         <option value="" selected="selected">--Pilih--</option>
+                                    <option value="201601" > 
+                  201601 </option>
+                                    <option value="201602" > 
+                  201602 </option>
+                                    <option value="201603" > 
+                  201603 </option>
+                                    <option value="201604" > 
+                  201604 </option>
+                                    <option value="201701" > 
+                  201701 </option>
+                                    <option value="201702" > 
+                  201702 </option>
+                                    <option value="201703" > 
+                  201703 </option>
+                                    <option value="201704" > 
+                  201704 </option>
+                           </select> 
+         -->
+
+          
+        <td align="center">  To </td>
+        <td> 
+        <select name="list_year_to" class="form-control">
+          <option value="">Year To</option>
+                     <option value="2000">2000</option>
+                     <option value="2001">2001</option>
+                     <option value="2002">2002</option>
+                     <option value="2003">2003</option>
+                     <option value="2004">2004</option>
+                     <option value="2005">2005</option>
+                     <option value="2006">2006</option>
+                     <option value="2007">2007</option>
+                     <option value="2008">2008</option>
+                     <option value="2009">2009</option>
+                     <option value="2010">2010</option>
+                     <option value="2011">2011</option>
+                     <option value="2012">2012</option>
+                     <option value="2013">2013</option>
+                     <option value="2014">2014</option>
+                     <option value="2015">2015</option>
+                     <option value="2016">2016</option>
+                     <option value="2017">2017</option>
+                     <option value="2018">2018</option>
+                     <option value="2019">2019</option>
+                     <option value="2020">2020</option>
+                     <option value="2021">2021</option>
+                     <option value="2022">2022</option>
+                     <option value="2023">2023</option>
+                     <option value="2024">2024</option>
+                     <option value="2025">2025</option>
+                     <option value="2026">2026</option>
+                     <option value="2027">2027</option>
+                     <option value="2028">2028</option>
+                     <option value="2029">2029</option>
+                     <option value="2030">2030</option>
+                     <option value="2031">2031</option>
+                     <option value="2032">2032</option>
+                     <option value="2033">2033</option>
+                     <option value="2034">2034</option>
+                     <option value="2035">2035</option>
+                     <option value="2036">2036</option>
+                     <option value="2037">2037</option>
+                     <option value="2038">2038</option>
+                     <option value="2039">2039</option>
+                     <option value="2040">2040</option>
+                     <option value="2041">2041</option>
+                     <option value="2042">2042</option>
+                     <option value="2043">2043</option>
+                     <option value="2044">2044</option>
+                     <option value="2045">2045</option>
+                     <option value="2046">2046</option>
+                     <option value="2047">2047</option>
+                     <option value="2048">2048</option>
+                     <option value="2049">2049</option>
+                     <option value="2050">2050</option>
+                     <option value="2051">2051</option>
+                     <option value="2052">2052</option>
+                     <option value="2053">2053</option>
+                     <option value="2054">2054</option>
+                     <option value="2055">2055</option>
+                     <option value="2056">2056</option>
+                     <option value="2057">2057</option>
+                     <option value="2058">2058</option>
+                     <option value="2059">2059</option>
+                     <option value="2060">2060</option>
+                     <option value="2061">2061</option>
+                     <option value="2062">2062</option>
+                     <option value="2063">2063</option>
+                     <option value="2064">2064</option>
+                     <option value="2065">2065</option>
+                     <option value="2066">2066</option>
+                     <option value="2067">2067</option>
+                     <option value="2068">2068</option>
+                     <option value="2069">2069</option>
+                     <option value="2070">2070</option>
+                     <option value="2071">2071</option>
+                     <option value="2072">2072</option>
+                     <option value="2073">2073</option>
+                     <option value="2074">2074</option>
+                     <option value="2075">2075</option>
+                     <option value="2076">2076</option>
+                     <option value="2077">2077</option>
+                     <option value="2078">2078</option>
+                     <option value="2079">2079</option>
+                     <option value="2080">2080</option>
+                     <option value="2081">2081</option>
+                     <option value="2082">2082</option>
+                     <option value="2083">2083</option>
+                     <option value="2084">2084</option>
+                     <option value="2085">2085</option>
+                     <option value="2086">2086</option>
+                     <option value="2087">2087</option>
+                     <option value="2088">2088</option>
+                     <option value="2089">2089</option>
+                     <option value="2090">2090</option>
+                     <option value="2091">2091</option>
+                     <option value="2092">2092</option>
+                     <option value="2093">2093</option>
+                     <option value="2094">2094</option>
+                     <option value="2095">2095</option>
+                     <option value="2096">2096</option>
+                     <option value="2097">2097</option>
+                     <option value="2098">2098</option>
+                     <option value="2099">2099</option>
+                     <option value="2100">2100</option>
+                    
+         </select>
+        </td>
+        <td> 
+          <select name="list_month_to" class="form-control">
+          <option value="">Month To</option>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                     <option value="6">6</option>
+                     <option value="7">7</option>
+                     <option value="8">8</option>
+                     <option value="9">9</option>
+                     <option value="10">10</option>
+                     <option value="11">11</option>
+                     <option value="12">12</option>
+                    
+         </select>
+         </td>
+      </tr>
+
+      
+
+     </table>
+  
+     <input type="submit" name="caridata" class="btn btn-primary btn-block" value="Cari Data">  
+     <br>
+   
+     </form>
+     
+     <br> 
+
+     <table class="table table-stripped table-hover" >
+     
+       <tr style="width: 10%;">  
+          <td> <b>Customer Name </b> </td>
+          <td> : </td>
+          <td>  </td>
+       </tr>
+       <tr style="width: 10%;">  
+          <td> <b>Paid Status  </b> </td>
+          <td> : </td>
+          <td>  
+          
+                     
+
+           </td>
+       </tr>
+ 
+      </table>
+      <table class="table table-stripped table-hover" >
+      <tr>  
+          <td> <b> Bill Period From </b> </td>
+          <td> : </td>
+          <td>  </td>
+          <td> <b>To </b> </td>
+          <td> :  </td>
+          <td>   </td>
+      </tr>
+      </table>
+           
+    <br>
+    <form name="print" method="POST" action="print_billing_list.php" target="_blank" enctype="multipart/form-data"> 
+     <input type="hidden" name="id_customer_name" value="">
+     <input type="hidden" name="bill_period_from" value="">
+     <input type="hidden" name="bill_period_to" value="">
+     
+
+    
+    <br>
+</form>
+     <br>
+
+     <table class="table table-stripped table-hover" >
+        <tr>
+        <td> <b>Contract Number </b> </td>
+        <td> <b>Nama Pekerjaan </b>  </td>
+        <td> <b>CC Name </b>  </td>
+        <td> <b>Total PAID Amount</b>  </td>
+        </tr>
+
+                <tr>
+        <td> -  </td>
+        <td> -  </td>
+        <td> -  </td>
+        <td> Rp.-  </td>
+        </tr>
+                
+
+         <tr>
+          <td colspan="3"> <b>TOTAL</b> </td>
+          <td> <b>Rp.  0</b></td>
+        </tr>
+     </table>
+   </div>
+   </div>
+   </div>
+
+
+    </div> <!-- /container -->
+
+    <footer class="footer">
+      <div class="container" style="text-align:center; margin-top:30px;">
+        <p class="text-muted"> &copy; 2016 <a href='http://wavecomindo.co.id'>PT. Wavecomindo</a></p>
+      </div>
+    </footer>
+
+    
+     
+  </body>
+</html>
+
+
+
+
+
+
+<?php }
+}
+?>
